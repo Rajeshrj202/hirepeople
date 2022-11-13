@@ -29,6 +29,21 @@ Password: 123456
 ==================================================
 
 
+Some Screenshots preview : 
+
+lOGIN Page:
+ ![image](https://user-images.githubusercontent.com/54094045/201504860-a7d8f99b-7fd2-401e-b6b0-9bfad5b292bb.png)
+
+Dashboard Page:
+ ![image](https://user-images.githubusercontent.com/54094045/201504957-3e7a0fd7-c84d-47a6-b9d1-525f4ed5b506.png)
+
+Candidate Page:
+![image](https://user-images.githubusercontent.com/54094045/201504931-d21c59da-a35a-4872-908d-70bf43fb7742.png)
+
+Add Candidate Page:
+![image](https://user-images.githubusercontent.com/54094045/201504949-45e7b79c-8a0b-41ef-84f1-b7577836f6ef.png)
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
