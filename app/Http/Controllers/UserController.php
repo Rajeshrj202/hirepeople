@@ -9,7 +9,7 @@ use App\Models\Role;
 use Carbon\Carbon;
 use Auth;
 use Hash;
-
+use DB;
 class UserController extends Controller
 {
 
