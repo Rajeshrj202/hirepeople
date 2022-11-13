@@ -13,7 +13,7 @@ use Carbon\Carbon;
 use Auth;
 use Storage;
 use Hash;
-
+use DB;
 class CandidateController extends Controller
 {
     
@@ -58,6 +58,9 @@ class CandidateController extends Controller
 
     public function store(Request $request)
     {
+       
+        try{
+
             $request->validate([
                 'candidate_name' => ['required','string','max:255'],
                 'candidate_email' => ['required', 'string', 'email', 'max:255', 'unique:candidate,candidate_email'],
@@ -69,7 +72,8 @@ class CandidateController extends Controller
                 'resume' => 'required|mimes:pdf|max:5120'
 
             ]);
-        
+            DB::beginTransaction();
+
             $data = $request->all();
             $data['created_by']=Auth::id();
             $data['updated_by']=Auth::id();
@@ -102,15 +106,28 @@ class CandidateController extends Controller
 
 
                 }
-            
-            if($candidate)
-            {
 
-             return   redirect()->route('candidate.index')->with(['message' => 'Great! Candidate Created Successfully', 'type' => 'success']);
+                DB::commit();
+            
+                if($candidate)
+                {
+
+                return   redirect()->route('candidate.index')->with(['message' => 'Great! Candidate Created Successfully', 'type' => 'success']);
+
+                }
+                
 
             }
+            catch(Exception $qe){
 
+                DB::rollback();
+
+                return redirect()->route('candidate.index')->with(['error' => $qe->getMessage(), 'type' => 'alert']);
+            }
+        
+           
             return redirect()->route('candidate.index')->with(['message' => 'Oops! Something Went Wrong', 'type' => 'alert']);
+            
     
     }
 
@@ -139,6 +156,8 @@ class CandidateController extends Controller
 
     public function update(Request $request,$id)
     {
+        try{
+
         $candidate=Candidate::findCandidate($id);
 
         if(isset($candidate) && !empty($candidate)):
@@ -155,7 +174,9 @@ class CandidateController extends Controller
                 'resume' => 'mimes:pdf|max:5120'
 
             ]);
-        
+
+            DB::beginTransaction();
+
             $data = $request->all();
             $data['updated_by']=Auth::id();
             $data['updated_at']=Carbon::now();
@@ -183,6 +204,8 @@ class CandidateController extends Controller
 
                     Storage::disk('public')->delete($oldfile);
                 }
+
+            DB::commit();
             
             if($candidate)
             {
@@ -192,6 +215,14 @@ class CandidateController extends Controller
             }
 
         endif;
+
+        }
+        catch(Exception $qe){
+
+            DB::rollback();
+
+            return redirect()->route('candidate.index')->with(['error' => $qe->getMessage(), 'type' => 'alert']);
+        }
             
         return redirect()->route('candidate.index')->with(['message' => 'Oops! Something Went Wrong', 'type' => 'alert']);
 

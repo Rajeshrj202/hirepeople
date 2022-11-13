@@ -12,6 +12,7 @@ use App\Models\Status;
 use Carbon\Carbon;
 use Auth;
 use Storage;
+use DB;
 
 class CandidateFeedbackController extends Controller
 {
@@ -27,7 +28,7 @@ class CandidateFeedbackController extends Controller
 
     public function store(Request $request,$id)
     {   
-
+        try{
             $candidate=Candidate::find($id);
 
             if(isset($candidate) && !empty($candidate)):
@@ -38,6 +39,9 @@ class CandidateFeedbackController extends Controller
 
                 if($candidate->status_id==3): $rules['status_id'] = 'required'; endif;
                 $request->validate($rules);
+
+                DB::beginTransaction();
+
                 $data = $request->all();
                 $data['created_by']=Auth::id();
                 $data['created_at']=Carbon::now();
@@ -50,10 +54,20 @@ class CandidateFeedbackController extends Controller
 
                 $candidate->status_id=!empty($request->status_id) ? $request->status_id : $candidate->status_id;
                 $candidate->save();
+                
+                DB::commit();
 
             endif;
 
             return back()->with(['message' => 'Feedback Updated Successfully', 'type' => 'success']);
+
+        }
+        catch(Exception $qe){
+
+            DB::rollback();
+
+            return back()->with(['error' => $qe->getMessage(), 'type' => 'alert']);
+        }
     }
 
 
