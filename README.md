@@ -1,3 +1,34 @@
+
+Please click here to check the Live Working Link : <a href="https://hirepeople.rajesh.fun" target="_blank"> Website Link</a>
+
+
+User Credentials : 
+
+Admin Login Details:
+
+Email: admin@gmail.com
+Password: 123456
+
+HR Login Details
+
+Email: hr@gmail.com
+Password: 123456
+
+Team Lead Login Details
+
+Email: teamlead1@gmail.com
+Password: 123456
+
+Email: teamlead2@gmail.com
+Password: 123456
+
+Email: teamlead3@gmail.com
+Password: 123456
+
+
+====================================================================================================================================================================
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
