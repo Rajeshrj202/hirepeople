@@ -50,7 +50,7 @@
           </div>
         </td>
         <td>
-          <a href="#" class="d-flex align-items-center">
+          <a  class="d-flex align-items-center">
             <div class="avatar d-flex align-items-center justify-content-center fw-bold rounded bg-secondary me-3">
               <span>{{substr($userdata->name, 0, 1)}}</span>
             </div>

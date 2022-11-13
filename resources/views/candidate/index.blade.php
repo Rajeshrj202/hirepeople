@@ -46,12 +46,11 @@
       <tr>
         <td>
           <div class="form-check dashboard-check">
-
-            <label class="form-check-label" for="userCheck2">{{$key+1}}.</label>
+              <label class="form-check-label" for="userCheck2">{{$key+1}}.</label>
           </div>
         </td>
         <td>
-          <a href="#" class="d-flex align-items-center">
+          <a href="{{route('candidate.show',$candidatedata->candidate_id)}}" class="d-flex align-items-center">
             <div class="avatar d-flex align-items-center justify-content-center fw-bold rounded bg-secondary me-3">
             <span>{{substr($candidatedata->candidate_name, 0, 1)}}</span>
             </div>
