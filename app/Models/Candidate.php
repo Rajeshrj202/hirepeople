@@ -135,6 +135,50 @@ class Candidate extends Model
    }
 
 
+   public static function findMyCandidate($id)
+   {
+
+		$user=Auth::user();
+		$userid=null;
+		if((in_array('teamlead',$user->getRoleNames()->toArray())))
+		{
+			$userid=$user->id;
+		}
+   	 	return  Candidate::
+   	 			  join('status','status.status_id','candidate.status_id')
+   	 			->join('users','users.id','candidate.created_by')
+   	 			->join('designations','designations.designation_id','candidate.designation_id')
+   	 			->where('candidate.candidate_id',$id)
+				->where(function ($query) use ($userid) {
+
+					if(isset($userid) && !empty($userid)):
+						$query->where('candidate.user_id',$userid);
+					endif;
+					
+				})
+   	 			->select(
+   	 				'candidate.candidate_id',
+   	 				'candidate.user_id',
+   	 				'candidate.candidate_name',
+   	 				'candidate.candidate_email',
+   	 				'candidate.candidate_experience',
+					'candidate.current_ctc',
+					'candidate.expected_ctc',
+					'candidate.resume_path',
+					'candidate.created_at',
+					'candidate.updated_at',
+					'designations.designation_id',
+   	 				'designations.designation_name',
+   	 				'status.status_name',
+   	 				'status.status_id',
+   	 				'users.name as created_by'
+
+
+   	 				)
+   	 			->first();
+   	}
+
+
    public static function CountStatistics()
    {
 		$user=Auth::user();
