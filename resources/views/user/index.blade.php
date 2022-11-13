@@ -31,12 +31,7 @@
   <table class="table user-table table-hover align-items-center  mt-4">
     <thead>
       <tr>
-        <th class="border-bottom">
-          <div class="form-check dashboard-check">
-
-            <label class="form-check-label" for="userCheck55">Sr No</label>
-          </div>
-        </th>
+        <th class="border-bottom">Sr No </th>
         <th class="border-bottom">Name</th>
         <th class="border-bottom">Status</th>
         <th class="border-bottom">Roles</th>
