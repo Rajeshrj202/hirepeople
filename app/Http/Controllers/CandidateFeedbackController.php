@@ -83,7 +83,7 @@ class CandidateFeedbackController extends Controller
 
             $data['candidatedata']=$candidate;
             $data['candidatefeedbacks']=CandidateFeedback::findByCandidate($id);
-            $data['status']=Status::getActive();
+            $data['status']=Status::getSelected();
             return view('candidate.show',$data);
 
         endif;

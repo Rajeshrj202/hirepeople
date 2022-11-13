@@ -33,6 +33,11 @@ class Status extends Model
    	 	return  Status::where('isactive',1)->get();
    }
 
+   public static function getSelected()
+   {
+   	 	return  Status::where('isactive',1)->whereIn('status_id',[1,2])->get();
+   }
+
   
    
 }
