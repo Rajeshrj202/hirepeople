@@ -77,7 +77,7 @@ class CandidateFeedbackController extends Controller
     public function show(Request $request,$id)
     {
         
-        $candidate=Candidate::findMyCandidate($id);
+        $candidate=Candidate::findCandidate($id);
 
         if(isset($candidate) && !empty($candidate)):
 

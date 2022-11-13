@@ -104,38 +104,7 @@ class Candidate extends Model
    	 			->get();
    }
 
-
    public static function findCandidate($id)
-   {
-   	 	return  Candidate::
-   	 			  join('status','status.status_id','candidate.status_id')
-   	 			->join('users','users.id','candidate.created_by')
-   	 			->join('designations','designations.designation_id','candidate.designation_id')
-   	 			->where('candidate.candidate_id',$id)
-   	 			->select(
-   	 				'candidate.candidate_id',
-   	 				'candidate.user_id',
-   	 				'candidate.candidate_name',
-   	 				'candidate.candidate_email',
-   	 				'candidate.candidate_experience',
-					'candidate.current_ctc',
-					'candidate.expected_ctc',
-					'candidate.resume_path',
-					'candidate.created_at',
-					'candidate.updated_at',
-					'designations.designation_id',
-   	 				'designations.designation_name',
-   	 				'status.status_name',
-   	 				'status.status_id',
-   	 				'users.name as created_by'
-
-
-   	 				)
-   	 			->first();
-   }
-
-
-   public static function findMyCandidate($id)
    {
 
 		$user=Auth::user();
@@ -144,6 +113,7 @@ class Candidate extends Model
 		{
 			$userid=$user->id;
 		}
+		
    	 	return  Candidate::
    	 			  join('status','status.status_id','candidate.status_id')
    	 			->join('users','users.id','candidate.created_by')
