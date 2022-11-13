@@ -7,8 +7,9 @@
 
 
 <div class="card card-body shadow border-0 table-wrapper table-responsive">
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <div class="d-flex ">
+
+  <div class="row justify-content-between align-items-center">
+    <div class="col-lg-8 col-sm-12 ">
       <form class="navbar-search form-inline px-3" id="navbar-search-main">
         <div class="input-group input-group-merge search-bar">
           <span class="input-group-text" id="topbar-addon">
@@ -19,15 +20,21 @@
           <input type="text" class="form-control" id="topbarInputIconLeft" placeholder="Search By Status,Email OR Name" aria-label="Search" aria-describedby="topbar-addon" name="search" value="{{Request::get('search')}}">
         </div>
       </form>
-      @can('candidate create')
+    </div>
+
+    @can('candidate create')
+    <div class="col-12 col-lg-4 col-xs-12 d-md-flex mt-1 text-center">
       <a href="{{route('candidate.create')}}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
         <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
         </svg> New Candidate
       </a>
-      @endcan
     </div>
+    @endcan
+
   </div>
+
+
   <table class="table user-table table-hover align-items-center mt-4">
     <thead>
       <tr>
@@ -46,13 +53,13 @@
       <tr>
         <td>
           <div class="form-check dashboard-check">
-              <label class="form-check-label" for="userCheck2">{{$key+1}}.</label>
+            <label class="form-check-label" for="userCheck2">{{$key+1}}.</label>
           </div>
         </td>
         <td>
           <a href="{{route('candidate.show',$candidatedata->candidate_id)}}" class="d-flex align-items-center">
             <div class="avatar d-flex align-items-center justify-content-center fw-bold rounded bg-secondary me-3">
-            <span>{{substr($candidatedata->candidate_name, 0, 1)}}</span>
+              <span>{{substr($candidatedata->candidate_name, 0, 1)}}</span>
             </div>
             <div class="d-block">
               <span class="fw-bold">{{$candidatedata->candidate_name}}</span>
