@@ -45,7 +45,7 @@
          </a>
        </li>
        @can('candidate index')
-       <li class="nav-item {{ Route::is('candidate.index') ? 'active' : '' }}">
+       <li class="nav-item {{ Request::segment(1) === 'candidate' ? 'active' : null }}">
          <a href="{{route('candidate.index')}}" class="nav-link d-flex justify-content-between">
            <span>
              <span class="sidebar-icon">
@@ -60,7 +60,7 @@
        </li>
        @endcan
        @can('candidate assigned')
-       <li class="nav-item {{ Route::is('candidate.assigned') ? 'active' : '' }}">
+       <li class="nav-item {{ Request::segment(1) === 'candidate' ? 'active' : null }}">
          <a href="{{route('candidate.assigned')}}" class="nav-link d-flex justify-content-between">
            <span>
              <span class="sidebar-icon">
@@ -75,7 +75,7 @@
        </li>
        @endcan
        @can('user index')
-       <li class="nav-item {{ Route::is('user.index') ? 'active' : '' }}">
+       <li class="nav-item {{ Request::segment(1) === 'user' ? 'active' : null }}">
          <a href="{{route('user.index')}}" class="nav-link d-flex justify-content-between">
            <span>
              <span class="sidebar-icon">
